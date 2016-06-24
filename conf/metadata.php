@@ -29,6 +29,10 @@ $meta['info']                = array('plugin_oauth');
 $meta['auth0-key']           = array('string');
 $meta['auth0-secret']        = array('string');
 $meta['auth0-domain']        = array('string');
+$meta['authserver-key']      = array('string');
+$meta['authserver-secret']   = array('string');
+$meta['authserver-domain']   = array('string');
+$meta['authserver-group-prefix'] = array('string');
 $meta['custom-redirectURI']  = array('string','_caution' => 'warning');
 $meta['facebook-key']        = array('string');
 $meta['facebook-secret']     = array('string');
@@ -52,6 +56,7 @@ $meta['singleService']       = array('multichoice',
                                      '_choices' => array(
                                          '',
                                          'Auth0',
+                                         'Authserver',
                                          'Google',
                                          'Facebook',
                                          'Github',
