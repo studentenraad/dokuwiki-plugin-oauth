@@ -18,10 +18,11 @@ class AuthserverAdapter extends AbstractAdapter
         $response = $this->oAuth->request('api/user.json');
         $result = json_decode($response, true);
         $groupPrefix = $this->hlp->getConf('authserver-group-prefix');
+        $oauthDomain = $this->oAuth->getAccessTokenEndpoint()->getHost();
         return [
             'name' => $result['name'],
             'user' => $result['username'],
-            'mail' => $result['primary-email'],
+            'mail' => $result['guid'].'@'.$oauthDomain,
             'grps' => array_map(function($groupName) use ($groupPrefix) {
                 return substr($groupName, strlen($groupPrefix));
             }, array_filter($result['groups'], function($groupName) use ($groupPrefix) {
@@ -36,7 +37,6 @@ class AuthserverAdapter extends AbstractAdapter
             Authserver::REALNAME,
             Authserver::USERNAME,
             Authserver::GROUPS,
-            Authserver::EMAIL,
         ];
     }
 
